@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TABLES</title>
+    <style>
+        * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+img {
+  max-width: 100%;
+  transition: all 0.2s ease-in-out;
+}
+h1{
+    display: block;
+    font-size: 2em;
+    align-items: center;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1rem;
+  z-index: 2;
+  position: relative;
+}
+
+.container .main-img.active + .overlay {
+  content: "";
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  background-color: rgb(0 0 0 / 75%);
+  z-index: 5;
+}
+
+.container .main-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 600px;
+  padding: 2rem;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 6;
+  animation: imgTransition 0.45s ease-in-out;
+}
+
+.container .main-img .close,
+.container .main-img .next,
+.container .main-img .prev {
+  position: absolute;
+  top: 0;
+  right: 2rem;
+  margin-left: auto;
+}
+
+.container .main-img img {
+  width: 100%;
+  height: 100%;
+}
+
+.container .main-img .close {
+  width: 30px;
+  height: 30px;
+}
+
+.container .main-img .next {
+  right: -60px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 80px;
+  height: 40px;
+  font-size: 16px;
+}
+.container .main-img .prev {
+  left: -60px;
+  right: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 80px;
+  height: 40px;
+  font-size: 16px;
+}
+.container .gallery-wrapper {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  position: relative;
+  z-index: 4;
+}
+
+@keyframes imgTransition {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  50% {
+    opacity: 0.5;
+    visibility: visible;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+
+  --popup-offset: 20px;
+  --ok-button-color: #0074cc;
+  --ok-button-color-hover: #0a95ff;
+  --cancel-button-color: #d6d6d6;
+  --cancel-button-color-hover: #f3f3f3;
+}
+
+.buttons {      
+  display: flex;
+  gap: 1em;
+  justify-content:end;
+  position: fixed;
+  left: 40%;
+  top: 90%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+}
+.btn {
+  border: 1px solid transparent;
+  border-radius: .5em;
+  cursor: pointer;
+  font-family: sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 1em 2em;
+  transition: .3s;
+}
+.btn.ok {
+  background-color: var(--ok-button-color);
+  border-color: var(--ok-button-color);
+  color: #fff;
+}
+.btn.cancel {
+  background-color: var(--cancel-button-color);
+  border-color: #666;
+  color: #333;
+}
+.popup {
+  background-color: #fff;
+  border: 3px solid #333;
+  border-radius: .5em;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  font-size: 18px;
+  opacity: 0;
+  padding: 1em 2em;
+  position: fixed;
+  transition: right .3s, opacity .3s;
+  white-space: nowrap;
+}
+.thank-you {
+  top: var(--popup-offset, 20px);
+  right: -185px;
+  width: 185px;
+}
+.come-back-soon {
+  bottom: var(--popup-offset, 20px);
+  right: -235px;
+  width: 235px;
+}
+.in-view {
+  opacity: 1;
+  right: var(--popup-offset, 20px);
+  transition: right .3s, opacity .6s;
+}
+.popup span {
+  margin-left: 4px;
+}
+.popup span.fade-out {
+  animation-name: fadeOut;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-out;
+}    
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+
+@media (hover: hover) {
+  .btn.ok:hover {
+    background-color: var(--ok-button-color-hover);
+    border-color: var(--ok-button-color-hover);
+  }
+  .btn.cancel:hover {
+    background-color: var(--cancel-button-color-hover);
+  }
+}
+
+    </style>
+</head>
+<body>
+    <h1 class="table"><center>TABLES AVAILABLE</center></h1>
+    <div class="container">
+        <div class="main-img">
+          <button class="close">&times;</button>
+          <button class="next">Next</button>
+          <button class="prev">Prev</button>
+          <img src="t1.jpg" alt="">
+        </div>
+        <div class="overlay"></div>
+        <div class="gallery-wrapper">
+          <div class="img">
+            <img src="t2.jpg" alt="">
+          </div>
+          <div class="img">
+            <img src="t3.jpg" alt="">
+          </div>
+          <div class="img">
+            <img src="t4.jpg" alt="">
+          </div>
+         
+          
+          
+        </div>
+        <div class="buttons">
+            <a class="btn ok" a href="book.html">BOOK</a></button>
+            <a class="btn cancel" a href="index.html">RETURN</a></button>
+          </div>
+        
+          <div class="popup thank-you">
+            Thank you!
+            <span id="thankYouCounter"></span>
+          </div>
+          <div class="popup come-back-soon">
+            Come back soon.
+            <span id="comeBackSoonCounter"></span>
+          </div>
+      </div>
+      <script>
+        class Countdown {
+  constructor(el) {
+    this.el = el;
+    this.countTimer = null;
+    this.render = this.render.bind(this);
+  }
+  start() {
+    if (!this.el) return;
+    this.stop();
+    this.count = 1;
+    this.countTimer = setInterval(this.render, 1000);
+    this.render();
+  }
+  stop() {
+    clearInterval(this.countTimer);
+    this.el.classList.remove("fade-out");
+    this.el.textContent = "";
+  }
+  render() {
+    // hard-coded to 8, but could easily parameterize this
+    if (this.count > 8) {
+      return this.stop();
+    }
+    this.el.textContent = this.count++;
+    this.el.classList.remove("fade-out");
+    // "fade-out" class triggers fade animation; wrap it in a setTimeout
+    // to give classList.remove a processor cycle to stop the animation
+    setTimeout(() => this.el.classList.add("fade-out"), 1);
+  }
+}
+
+window.addEventListener("DOMContentLoaded", evt => {
+  let thankYouTimer, comeBackSoonTimer;
+
+  const thankYouPopup = document.querySelector(".thank-you");
+  const comeBackSoonPopup = document.querySelector(".come-back-soon");
+
+  const okButton = document.querySelector(".ok");
+  const thankYouCounter = new Countdown(document.querySelector("#thankYouCounter"), 8);
+  okButton.addEventListener("pointerup", evt => {
+    evt.stopPropagation();
+    clearTimeout(thankYouTimer, 8);
+    thankYouCounter.start();
+    thankYouTimer = setTimeout(() => {
+      thankYouCounter.stop();
+      thankYouPopup.classList.remove("in-view");
+    }, 8000);
+    thankYouPopup.classList.add("in-view");
+  });
+  
+  const cancelButton = document.querySelector(".cancel");
+  const comeBackSoonCounter = new Countdown(document.querySelector("#comeBackSoonCounter"), 8);
+  cancelButton.addEventListener("pointerup", evt => {
+    evt.stopPropagation();
+    clearTimeout(comeBackSoonTimer);
+    comeBackSoonCounter.start();
+    comeBackSoonTimer = setTimeout(() => {
+      comeBackSoonCounter.stop();
+      comeBackSoonPopup.classList.remove("in-view");
+    }, 8000);
+    comeBackSoonPopup.classList.add("in-view");
+  });
+
+  document.addEventListener("pointerup", () => {
+    thankYouCounter.stop();
+    thankYouPopup.classList.remove("in-view");
+    comeBackSoonCounter.stop();
+    comeBackSoonPopup.classList.remove("in-view");
+  });
+});
+      </script>
+</body>
+</html>
